@@ -1,6 +1,12 @@
 import "./globals.css";
 import Link from "next/link";
 import type { Metadata } from "next";
+import {
+  HiOutlineMagnifyingGlass,
+  HiOutlineUser,
+  HiOutlineGlobeAlt,
+  HiOutlineShieldCheck,
+} from "react-icons/hi2";
 
 export const metadata: Metadata = {
   title: "Afro-Sino Trade",
@@ -15,47 +21,70 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-[#F7F8F7] text-gray-900">
-        {/* Header */}
-        <header className="w-full bg-white border-b border-gray-200">
+        {/* HEADER */}
+        <header className="w-full bg-white/90 backdrop-blur border-b border-slate-200 sticky top-0 z-40">
           <div className="mx-auto max-w-7xl px-6">
             <div className="flex h-20 items-center justify-between">
-              {/* Logo */}
-              <Link href="/" className="text-lg font-semibold tracking-wide">
+
+              {/* LOGO */}
+              <Link
+                href="/"
+                className="flex items-center gap-2 text-lg font-semibold tracking-wide text-slate-900"
+              >
+                <HiOutlineGlobeAlt className="w-6 h-6 text-[#6B8F7A]" />
                 AFRO-SINO TRADE
               </Link>
 
-              {/* Navigation */}
-              <nav className="hidden md:flex items-center gap-8 text-sm text-gray-600">
-                <Link href="/categories" className="hover:text-gray-900">
+              {/* NAVIGATION */}
+              <nav className="hidden md:flex items-center gap-10 text-sm text-slate-600">
+                <Link
+                  href="/categories"
+                  className="flex items-center gap-2 hover:text-slate-900 transition"
+                >
+                  <HiOutlineGlobeAlt className="w-4 h-4" />
                   Categories
                 </Link>
-                <Link href="/escrow" className="hover:text-gray-900">
+
+                <Link
+                  href="/escrow"
+                  className="flex items-center gap-2 hover:text-slate-900 transition"
+                >
+                  <HiOutlineShieldCheck className="w-4 h-4" />
                   How Escrow Works
                 </Link>
-                <Link href="/vendors" className="hover:text-gray-900">
+
+                <Link
+                  href="/vendors"
+                  className="hover:text-slate-900 transition"
+                >
                   For Vendors
                 </Link>
               </nav>
 
-              {/* Actions */}
-              <div className="flex items-center gap-4">
+              {/* ACTIONS */}
+              <div className="flex items-center gap-5">
+
+                {/* SEARCH */}
                 <Link
                   href="/search"
-                  className="text-gray-600 hover:text-gray-900"
+                  className="p-2 rounded-xl border border-slate-200 text-slate-500 hover:text-[#6B8F7A] hover:border-[#6B8F7A] transition"
                 >
-                  🔍
+                  <HiOutlineMagnifyingGlass className="w-5 h-5" />
                 </Link>
 
+                {/* LOGIN */}
                 <Link
                   href="/login"
-                  className="text-sm text-gray-700 hover:text-gray-900"
+                  className="hidden sm:flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 transition"
                 >
+                  <HiOutlineUser className="w-4 h-4" />
                   Login
                 </Link>
 
+                {/* CTA */}
                 <Link
                   href="/start-buying"
-                  className="rounded-md bg-[#6B8F7A] px-4 py-2 text-sm font-medium text-white hover:bg-[#5F806E] transition"
+                  className="rounded-xl bg-[#6B8F7A] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#5F806E] transition shadow-sm"
                 >
                   Start Buying
                 </Link>
@@ -64,7 +93,7 @@ export default function RootLayout({
           </div>
         </header>
 
-        {/* Page Content */}
+        {/* PAGE CONTENT */}
         <main>{children}</main>
       </body>
     </html>
