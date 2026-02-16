@@ -7,6 +7,7 @@ import {
   HiOutlineLockClosed,
   HiOutlineScale,
   HiStar,
+  HiOutlineChatBubbleLeftRight,
 } from "react-icons/hi2";
 import { SiShieldsdotio } from "react-icons/si";
 import { FiArrowUpRight } from "react-icons/fi";
@@ -24,12 +25,12 @@ const stripImages = [
 
 /* ================= CATEGORY IMAGES ================= */
 const categories = [
-  { name: "Home & Kitchen", img: "/images/kitchen.jpeg" },
-  { name: "Industrials & Tools", img: "/images/tools.jpeg" },
-  { name: "Automobile & Spare Parts", img: "/images/parts.jpeg" },
-  { name: "Toys, Games & Sports", img: "/images/toys.jpeg" },
-  { name: "Building & Smart Systems", img: "/images/automation.jpeg" },
-  { name: "Electronics & Gadgets", img: "/images/tech.jpeg" },
+  { name: "Home & Kitchen", img: "/images/kitchen.jpeg", slug: "home-kitchen" },
+  { name: "Industrials & Tools", img: "/images/tools.jpeg", slug: "industrials-tools" },
+  { name: "Automobile & Spare Parts", img: "/images/parts.jpeg", slug: "automobile-spare-parts" },
+  { name: "Toys, Games & Sports", img: "/images/toys.jpeg", slug: "toys-games-sports" },
+  { name: "Building & Smart Systems", img: "/images/automation.jpeg", slug: "building-smart-systems" },
+  { name: "Electronics & Gadgets", img: "/images/tech.jpeg", slug: "electronics-gadgets" },
 ];
 
 /* ================= BEST SELLERS ================= */
@@ -70,9 +71,9 @@ const GlobalEscrowMarketplace = () => {
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {data.map((item, i) => (
-          <div key={i} className="bg-white border rounded-xl overflow-hidden hover:shadow-lg transition">
+          <div key={i} className="bg-white border rounded-xl overflow-hidden hover:shadow-lg transition flex flex-col">
             <img src={item.img} alt={item.name} className="h-44 w-full object-cover" />
-            <div className="p-4 space-y-2">
+            <div className="p-4 space-y-2 flex-1 flex flex-col">
               <h4 className="text-sm font-semibold line-clamp-2">{item.name}</h4>
 
               <div className="flex items-center gap-1 text-yellow-500 text-xs">
@@ -83,9 +84,14 @@ const GlobalEscrowMarketplace = () => {
               <p className="text-lg font-bold">{item.price}</p>
               <p className="text-xs text-gray-400">{item.moq}</p>
 
-              <button className="w-full mt-3 bg-[#0F172A] text-white py-2 rounded-lg text-sm hover:bg-black">
-                Add to Cart
-              </button>
+              <div className="flex gap-2 mt-auto pt-3">
+                <button className="flex-1 bg-[#0F172A] text-white py-2 rounded-lg text-sm hover:bg-black">
+                  Add to Cart
+                </button>
+                <button className="p-2 border rounded-lg text-slate-500 hover:text-[#065F46]">
+                  <HiOutlineChatBubbleLeftRight className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           </div>
         ))}
@@ -96,7 +102,7 @@ const GlobalEscrowMarketplace = () => {
   return (
     <div className="min-h-screen bg-[#F9FAFB] text-[#111827] font-sans">
 
-      {/* ================= HERO ================= */}
+      {/* HERO */}
       <section className="relative min-h-[70vh] flex items-center px-6 bg-white overflow-hidden">
         <div className="absolute inset-0">
           <img src={heroBg} className="w-full h-full object-cover" />
@@ -105,7 +111,6 @@ const GlobalEscrowMarketplace = () => {
 
         <div className="relative z-10 max-w-6xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
           
-          {/* LEFT CONTENT */}
           <div className="space-y-6">
             <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-gray-400 font-bold">
               <SiShieldsdotio className="text-[#065F46]" />
@@ -130,26 +135,21 @@ const GlobalEscrowMarketplace = () => {
             </div>
           </div>
 
-          {/* RIGHT IMAGE */}
           <div className="hidden lg:flex justify-center relative">
-            
-            {/* LOCK SECURITY BADGE */}
             <div className="absolute -top-6 bg-white rounded-full p-3 shadow-lg border border-gray-200">
               <HiOutlineLockClosed className="w-8 h-8 text-[#065F46]" />
             </div>
 
-            {/* REDUCED IMAGE SIZE */}
             <img
               src={hero}
               alt="Secure Trade"
               className="w-[320px] lg:w-[380px] rounded-2xl shadow-xl border"
             />
           </div>
-
         </div>
       </section>
 
-      {/* ================= IMAGE STRIP ================= */}
+      {/* IMAGE STRIP */}
       <section className="bg-white py-16">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-6">
           {stripImages.map((item, i) => (
@@ -162,26 +162,28 @@ const GlobalEscrowMarketplace = () => {
         </div>
       </section>
 
-      {/* ================= CATEGORY ================= */}
+      {/* SHOP BY CATEGORY */}
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-6 space-y-12">
           <h2 className="text-3xl font-semibold text-center">Shop by Category</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {categories.map((cat, i) => (
-              <div key={i} className="relative h-56 rounded-xl overflow-hidden group">
-                <img src={cat.img} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition" />
-                <div className="absolute inset-0 bg-black/50" />
-                <div className="relative z-10 p-6 text-white flex justify-between items-end h-full">
-                  <h3 className="font-semibold">{cat.name}</h3>
-                  <FiArrowUpRight />
+              <Link key={i} href={`/products/${cat.slug}`}>
+                <div className="relative h-56 rounded-xl overflow-hidden group cursor-pointer">
+                  <img src={cat.img} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition" />
+                  <div className="absolute inset-0 bg-black/50" />
+                  <div className="relative z-10 p-6 text-white flex justify-between items-end h-full">
+                    <h3 className="font-semibold">{cat.name}</h3>
+                    <FiArrowUpRight />
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ================= PRODUCTS ================= */}
+      {/* PRODUCTS */}
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-6 space-y-20">
           {renderProducts("Best Sellers", bestSellers)}
@@ -189,8 +191,6 @@ const GlobalEscrowMarketplace = () => {
           {renderProducts("Trending Now", trending)}
         </div>
       </section>
-
-    
 
     </div>
   );
