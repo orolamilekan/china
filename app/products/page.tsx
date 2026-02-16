@@ -40,7 +40,7 @@ export default function Marketplace() {
   const [viewType, setViewType] = useState<"grid" | "list">("grid");
   const [visibleCount, setVisibleCount] = useState(8);
 
-  const [quantities, setQuantities] = useState(
+  const [quantities, setQuantities] = useState<Record<number, number>>(
     allProducts.reduce((acc, p) => ({ ...acc, [p.id]: 1 }), {})
   );
 
