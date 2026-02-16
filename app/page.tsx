@@ -1,144 +1,179 @@
 "use client";
 
+import Link from "next/link";
 import {
   HiOutlineShieldCheck,
   HiOutlineUserGroup,
   HiOutlineLockClosed,
   HiOutlineScale,
+  HiStar,
 } from "react-icons/hi2";
 import { SiShieldsdotio } from "react-icons/si";
 import { FiArrowUpRight } from "react-icons/fi";
 
+/* ================= HERO IMAGES ================= */
+const heroBg = "/images/bg3.jpeg";
+const hero = "/images/air.png";
+
+/* ================= IMAGE STRIP ================= */
+const stripImages = [
+  { img: "/images/verified.jpeg", label: "Verified Manufacturing" },
+  { img: "/images/logistics.jpeg", label: "Secure Global Logistics" },
+  { img: "/images/trust.jpeg", label: "Trusted B2B Partnerships" },
+];
+
 /* ================= CATEGORY IMAGES ================= */
-const categoryImages: Record<string, string> = {
-  Electronics:
-    "https://images.unsplash.com/photo-1518770660439-4636190af475",
-  Fashion:
-    "https://images.unsplash.com/photo-1521334884684-d80222895322",
-  "Home & Kitchen":
-    "https://images.unsplash.com/photo-1556911220-e15b29be8c8f",
-  "Industrials & Tools":
-    "https://images.unsplash.com/photo-1581090700227-1e37b190418e",
-  "Automobile & Spare Parts":
-    "https://images.unsplash.com/photo-1487754180451-c456f719a1fc",
-  "Beauty & Personal Care":
-    "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9",
-  "Toys, Games & Sports":
-    "https://images.unsplash.com/photo-1517649763962-0c623066013b",
-  "Agriculture & Machinery":
-    "https://images.unsplash.com/photo-1581091215367-59ab6c0e3c1f",
-  "Packaging & Printing":
-    "https://images.unsplash.com/photo-1586864387967-d02ef85d93e8",
-  "Building & Smart Systems":
-    "https://images.unsplash.com/photo-1503387762-592deb58ef4e",
-  Others:
-    "https://images.unsplash.com/photo-1601598851547-4302969d0614",
-};
+const categories = [
+  { name: "Home & Kitchen", img: "/images/kitchen.jpeg" },
+  { name: "Industrials & Tools", img: "/images/tools.jpeg" },
+  { name: "Automobile & Spare Parts", img: "/images/parts.jpeg" },
+  { name: "Toys, Games & Sports", img: "/images/toys.jpeg" },
+  { name: "Building & Smart Systems", img: "/images/automation.jpeg" },
+  { name: "Electronics & Gadgets", img: "/images/tech.jpeg" },
+];
+
+/* ================= BEST SELLERS ================= */
+const bestSellers = [
+  { name: "12V Solar Power Inverter", img: "/images/solar.jpeg", price: "₦45.00", moq: "MOQ: 50 Units" },
+  { name: "Stainless Steel Cookware Set", img: "/images/cookware.jpeg", price: "₦28.00", moq: "MOQ: 100 Sets" },
+  { name: "Car LED Headlights", img: "/images/headlight.jpeg", price: "₦6.50", moq: "MOQ: 200 Units" },
+  { name: "Android Smart Tablet 10\"", img: "/images/tablet.jpeg", price: "₦65.00", moq: "MOQ: 30 Units" },
+];
+
+/* ================= NEW ARRIVALS ================= */
+const newArrivals = [
+  { name: "Smart WiFi Switch Module", img: "/images/smart-switch.jpeg", price: "₦4.20", moq: "MOQ: 500 Units" },
+  { name: "Portable Diesel Generator", img: "/images/generator.jpeg", price: "₦210.00", moq: "MOQ: 10 Units" },
+  { name: "Kids Electric Ride-On Car", img: "/images/toys.jpeg", price: "₦95.00", moq: "MOQ: 20 Units" },
+  { name: "Hydraulic Floor Jack", img: "/images/jack.jpeg", price: "₦22.00", moq: "MOQ: 80 Units" },
+];
+
+/* ================= TRENDING ================= */
+const trending = [
+  { name: "CCTV Security Camera Kit", img: "/images/cctv.jpeg", price: "₦75.00", moq: "MOQ: 25 Sets" },
+  { name: "Bluetooth Earbuds", img: "/images/earbuds.jpeg", price: "₦3.80", moq: "MOQ: 1000 Units" },
+  { name: "Industrial Water Pump", img: "/images/pump.jpeg", price: "₦120.00", moq: "MOQ: 15 Units" },
+  { name: "Non-Stick Frying Pan", img: "/images/pots.jpeg", price: "₦3.20", moq: "MOQ: 300 Units" },
+];
 
 const GlobalEscrowMarketplace = () => {
+  const renderProducts = (title: string, data: any[]) => (
+    <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-semibold">{title}</h2>
+        <Link href="/products">
+          <span className="text-sm text-[#065F46] cursor-pointer">
+            View all →
+          </span>
+        </Link>
+      </div>
+
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {data.map((item, i) => (
+          <div key={i} className="bg-white border rounded-xl overflow-hidden hover:shadow-lg transition">
+            <img src={item.img} alt={item.name} className="h-44 w-full object-cover" />
+            <div className="p-4 space-y-2">
+              <h4 className="text-sm font-semibold line-clamp-2">{item.name}</h4>
+
+              <div className="flex items-center gap-1 text-yellow-500 text-xs">
+                <HiStar /><HiStar /><HiStar /><HiStar /><HiStar />
+                <span className="text-gray-400 ml-1">(4.8)</span>
+              </div>
+
+              <p className="text-lg font-bold">{item.price}</p>
+              <p className="text-xs text-gray-400">{item.moq}</p>
+
+              <button className="w-full mt-3 bg-[#0F172A] text-white py-2 rounded-lg text-sm hover:bg-black">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-[#F9FAFB] text-[#111827] font-sans">
 
-      {/* ================= HERO SECTION ================= */}
-      <section className="relative min-h-[78vh] flex items-center pt-14 pb-24 px-6 lg:px-8 overflow-hidden bg-white">
-        <img
-          src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7"
-          alt="Global manufacturing and trade"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-white/80 to-white/40" />
+      {/* ================= HERO ================= */}
+      <section className="relative min-h-[70vh] flex items-center px-6 bg-white overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={heroBg} className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-white/85" />
+        </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-8">
-            <div className="flex items-center space-x-3 text-[10px] font-bold tracking-[0.3em] uppercase text-gray-400">
+        <div className="relative z-10 max-w-6xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
+          
+          {/* LEFT CONTENT */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-gray-400 font-bold">
               <SiShieldsdotio className="text-[#065F46]" />
-              <span>EquiTrade Global</span>
+              EquiTrade Global
             </div>
 
-            <h1 className="text-5xl lg:text-7xl font-semibold leading-[1.05] tracking-tight text-slate-900">
-              Buy Direct from China. <br />
-              <span className="text-[#065F46]">Pay Safely.</span>
+            <h1 className="text-4xl lg:text-6xl font-semibold">
+              Secure China–Africa Trade
             </h1>
 
-            <p className="text-lg lg:text-xl text-slate-500 max-w-xl">
-              Secure escrow infrastructure connecting verified Chinese suppliers
-              with African enterprise buyers.
+            <p className="text-lg text-slate-500 max-w-lg">
+              Direct sourcing from verified Chinese factories with escrow protection.
             </p>
 
-            <div className="flex items-center space-x-5 pt-2">
-              <button className="bg-[#0F172A] text-white px-10 py-5 rounded-2xl font-medium hover:bg-slate-800 transition-all flex items-center group">
-                Browse Marketplace
-                <FiArrowUpRight className="ml-2 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+            <div className="flex gap-4">
+              <button className="bg-[#0F172A] text-white px-8 py-4 rounded-xl flex items-center">
+                Explore Marketplace <FiArrowUpRight className="ml-2" />
               </button>
-              <button className="border border-slate-200 px-10 py-5 rounded-2xl font-medium hover:bg-slate-50 bg-white/80">
-                Vendor Portal
+              <button className="border px-8 py-4 rounded-xl bg-white">
+                Become a Vendor
               </button>
             </div>
           </div>
 
-          {/* Escrow Visual */}
-          <div className="relative hidden lg:flex aspect-square rounded-[48px] bg-white/70 backdrop-blur border border-slate-100 items-center justify-center shadow-xl">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(6,95,70,0.08),transparent)]" />
-            <div className="w-80 h-80 rounded-full border border-slate-200 flex items-center justify-center bg-white relative">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white p-3 rounded-xl shadow border border-slate-100">
-                <HiOutlineLockClosed className="w-6 h-6 text-[#065F46]" />
-              </div>
-              <div className="w-56 h-56 rounded-full border border-slate-200 flex items-center justify-center shadow">
-                <HiOutlineShieldCheck className="w-24 h-24 text-slate-900" />
-              </div>
+          {/* RIGHT IMAGE */}
+          <div className="hidden lg:flex justify-center relative">
+            
+            {/* LOCK SECURITY BADGE */}
+            <div className="absolute -top-6 bg-white rounded-full p-3 shadow-lg border border-gray-200">
+              <HiOutlineLockClosed className="w-8 h-8 text-[#065F46]" />
             </div>
+
+            {/* REDUCED IMAGE SIZE */}
+            <img
+              src={hero}
+              alt="Secure Trade"
+              className="w-[320px] lg:w-[380px] rounded-2xl shadow-xl border"
+            />
           </div>
+
         </div>
       </section>
 
-      {/* ================= TRUST STRIP ================= */}
-      <section className="bg-[#F9FAFB] border-y border-slate-100 py-16">
-        <div className="max-w-7xl mx-auto px-8 grid md:grid-cols-4 gap-12">
-          {[
-            ["Escrow-Protected", "Funds held securely", HiOutlineShieldCheck] as const,
-            ["Verified Vendors", "Factory-level vetting", HiOutlineUserGroup] as const,
-            ["Secure Communication", "No off-platform risk", HiOutlineLockClosed] as const,
-            ["Dispute Resolution", "Structured mediation", HiOutlineScale] as const,
-          ].map(([title, desc, Icon], i) => (
-            <div key={i}>
-              <Icon className="w-7 h-7 text-[#065F46] mb-4" />
-              <h4 className="text-sm font-bold mb-1">{title as string}</h4>
-              <p className="text-xs text-slate-500">{desc as string}</p>
+      {/* ================= IMAGE STRIP ================= */}
+      <section className="bg-white py-16">
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-6">
+          {stripImages.map((item, i) => (
+            <div key={i} className="relative h-64 rounded-xl overflow-hidden">
+              <img src={item.img} className="absolute inset-0 w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-black/40" />
+              <p className="absolute bottom-4 left-4 text-white font-semibold">{item.label}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ================= CATEGORIES ================= */}
-      <section className="py-32 bg-[#F9FAFB]">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-semibold">Product Categories</h2>
-            <p className="text-slate-400 mt-3">
-              Source confidently across verified manufacturing sectors.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-8">
-            {Object.keys(categoryImages).map((cat) => (
-              <div
-                key={cat}
-                className="group relative h-72 rounded-[32px] overflow-hidden border border-slate-200 cursor-pointer"
-              >
-                <img
-                  src={categoryImages[cat]}
-                  alt={cat}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/55 transition" />
-                <div className="relative z-10 p-10 h-full flex flex-col justify-between text-white">
-                  <FiArrowUpRight className="text-xl" />
-                  <div>
-                    <h3 className="text-xl font-semibold">{cat}</h3>
-                    <p className="text-xs mt-2 uppercase tracking-widest opacity-80">
-                      Browse Products
-                    </p>
-                  </div>
+      {/* ================= CATEGORY ================= */}
+      <section className="py-20">
+        <div className="max-w-6xl mx-auto px-6 space-y-12">
+          <h2 className="text-3xl font-semibold text-center">Shop by Category</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {categories.map((cat, i) => (
+              <div key={i} className="relative h-56 rounded-xl overflow-hidden group">
+                <img src={cat.img} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition" />
+                <div className="absolute inset-0 bg-black/50" />
+                <div className="relative z-10 p-6 text-white flex justify-between items-end h-full">
+                  <h3 className="font-semibold">{cat.name}</h3>
+                  <FiArrowUpRight />
                 </div>
               </div>
             ))}
@@ -146,52 +181,17 @@ const GlobalEscrowMarketplace = () => {
         </div>
       </section>
 
-      {/* ================= FOOTER ================= */}
-      <footer className="bg-white border-t border-slate-100 pt-24 pb-12">
-        <div className="max-w-7xl mx-auto px-8 grid md:grid-cols-4 gap-16 mb-20">
-          <div>
-            <h3 className="font-bold tracking-widest uppercase text-sm">
-              EquiTrade Global
-            </h3>
-            <p className="text-xs text-slate-400 mt-4 leading-relaxed">
-              Secure cross-border trade infrastructure connecting China and
-              Africa through escrow-protected commerce.
-            </p>
-          </div>
-
-          <div className="text-xs space-y-3">
-            <p className="font-bold uppercase tracking-widest text-slate-900">
-              Platform
-            </p>
-            <a href="#" className="block hover:text-[#065F46]">Marketplace</a>
-            <a href="#" className="block hover:text-[#065F46]">Vendor Portal</a>
-            <a href="#" className="block hover:text-[#065F46]">Escrow System</a>
-          </div>
-
-          <div className="text-xs space-y-3">
-            <p className="font-bold uppercase tracking-widest text-slate-900">
-              Support
-            </p>
-            <a href="#" className="block hover:text-[#065F46]">Help Desk</a>
-            <a href="#" className="block hover:text-[#065F46]">Dispute Policy</a>
-            <a href="#" className="block hover:text-[#065F46]">Contact</a>
-          </div>
-
-          <div className="text-xs space-y-3">
-            <p className="font-bold uppercase tracking-widest text-slate-900">
-              Legal
-            </p>
-            <a href="#" className="block hover:text-[#065F46]">Terms</a>
-            <a href="#" className="block hover:text-[#065F46]">Compliance</a>
-            <a href="#" className="block hover:text-[#065F46]">Privacy</a>
-          </div>
+      {/* ================= PRODUCTS ================= */}
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-6 space-y-20">
+          {renderProducts("Best Sellers", bestSellers)}
+          {renderProducts("New Arrivals", newArrivals)}
+          {renderProducts("Trending Now", trending)}
         </div>
+      </section>
 
-        <div className="max-w-7xl mx-auto px-8 pt-10 border-t border-slate-100 flex justify-between text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-          <span>© 2026 EquiTrade Global</span>
-          <span>China 🇨🇳 — Africa 🌍</span>
-        </div>
-      </footer>
+    
+
     </div>
   );
 };
