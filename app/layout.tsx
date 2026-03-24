@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="max-w-7xl mx-auto px-6 flex justify-between">
             <p>Secure Escrow Protection on All Orders</p>
             <div className="flex gap-6">
-              <Link href="/track-order" className="hover:underline">Track Order</Link>
+              <Link href="/tracker" className="hover:underline">Track Order</Link>
               <Link href="/help" className="hover:underline">Help Center</Link>
             </div>
           </div>
@@ -70,7 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </Link>
 
                 <Link
-                  href="/vendors"
+                  href="/tracker"
                   className="hidden md:flex items-center gap-1 hover:text-slate-900 transition text-sm"
                 >
                   Track Orders
@@ -123,23 +123,84 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </p>
             </div>
 
+
             <div>
               <h4 className="text-white font-semibold mb-4">Marketplace</h4>
               <ul className="space-y-3 text-sm">
-                <li className="hover:text-white cursor-pointer">All Products</li>
-                <li className="hover:text-white cursor-pointer">Verified Suppliers</li>
-                <li className="hover:text-white cursor-pointer">Categories</li>
-                <li className="hover:text-white cursor-pointer">Bulk Deals</li>
+                <li>
+                  <Link
+                    href="/products"
+                    className="hover:text-white cursor-pointer block"
+                  >
+                    All Products 
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="/products"
+                    className="hover:text-white cursor-pointer block"
+                  >
+                    Verified Suppliers
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="/products"
+                    className="hover:text-white cursor-pointer block"
+                  >
+                    Categories
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="/products"
+                    className="hover:text-white cursor-pointer block"
+                  >
+                    Bulk Deals
+                  </Link>
+                </li>
               </ul>
             </div>
 
             <div>
               <h4 className="text-white font-semibold mb-4">Vendors</h4>
               <ul className="space-y-3 text-sm">
-                <li className="hover:text-white cursor-pointer">Become a Vendor</li>
-                <li className="hover:text-white cursor-pointer">Vendor Dashboard</li>
-                <li className="hover:text-white cursor-pointer">Compliance & KYC</li>
-                <li className="hover:text-white cursor-pointer">Escrow System</li>
+
+                <li>
+                  <Link href="/vendor_signup" className="hover:text-white transition">Become a Vendor
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="/dashboard"
+                    className="hover:text-white transition"
+                  >
+                    Vendor Dashboard
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="/vendor/compliance"
+                    className="hover:text-white transition"
+                  >
+                    Compliance & KYC
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="/escrow"
+                    className="hover:text-white transition"
+                  >
+                    Escrow System
+                  </Link>
+                </li>
+
               </ul>
             </div>
 

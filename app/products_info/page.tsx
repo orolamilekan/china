@@ -27,6 +27,33 @@ const similarProducts = [
   { id: 3, name: "AF-S 300 Industrial Milling Machine", price: "$7,800 – $9,000", img: "/images/similar-3.jpg" },
 ];
 
+const reviews = [
+  {
+    id: 1,
+    name: "Adebayo Agro Ltd",
+    rating: 5,
+    comment:
+      "Excellent milling machine. The output quality is consistent and installation was smooth.",
+    date: "2 weeks ago",
+  },
+  {
+    id: 2,
+    name: "Ken Agro Mills",
+    rating: 4,
+    comment:
+      "Very solid machine. Shipping took about 34 days to Lagos but everything arrived intact.",
+    date: "1 month ago",
+  },
+  {
+    id: 3,
+    name: "Bright Foods Processing",
+    rating: 5,
+    comment:
+      "Highly recommended for medium scale production. Good support from vendor.",
+    date: "3 weeks ago",
+  },
+];
+
 const ProductDetailPage = () => {
   const [selectedImage, setSelectedImage] = useState(images[0]);
   const [activeTab, setActiveTab] = useState("description");
@@ -203,6 +230,51 @@ const ProductDetailPage = () => {
               included.
             </p>
           )}
+        </div>
+      </div>
+
+      {/* REVIEWS SECTION */}
+      <div className="max-w-7xl mx-auto px-6 mt-10">
+        <h2 className="text-2xl font-bold mb-8">Customer Reviews</h2>
+
+        <div className="grid lg:grid-cols-3 gap-10">
+
+          {/* Rating Summary */}
+          <div className="bg-white p-6 rounded-xl border shadow-sm space-y-4">
+            <h3 className="font-semibold text-lg">Overall Rating</h3>
+
+            <div className="flex items-center gap-2 text-yellow-500">
+              {[...Array(5)].map((_, i) => (
+                <BsStarFill key={i} size={18} />
+              ))}
+            </div>
+
+            <p className="text-3xl font-bold">4.8</p>
+            <p className="text-sm text-gray-500">Based on 24 reviews</p>
+          </div>
+
+          {/* Review List */}
+          <div className="lg:col-span-2 space-y-6">
+            {reviews.map((review) => (
+              <div
+                key={review.id}
+                className="bg-white border rounded-xl p-6 shadow-sm space-y-3"
+              >
+                <div className="flex justify-between items-center">
+                  <h4 className="font-semibold">{review.name}</h4>
+                  <span className="text-sm text-gray-400">{review.date}</span>
+                </div>
+
+                <div className="flex text-yellow-500">
+                  {[...Array(review.rating)].map((_, i) => (
+                    <BsStarFill key={i} size={14} />
+                  ))}
+                </div>
+
+                <p className="text-gray-600 text-sm">{review.comment}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 

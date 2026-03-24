@@ -16,14 +16,14 @@ import {
 
 /* ---------------- PRODUCTS ---------------- */
 const allProducts = [
-  { id: 1, name: "Solar Inverter 5KW Hybrid", price: "$480 — $620", moq: "Min 5 Units", origin: "Guangzhou", img: "/images/products/solar-inverter.jpg" },
-  { id: 2, name: "Industrial Water Pump 3HP", price: "$120 — $180", moq: "Min 10 Units", origin: "Zhejiang", img: "/images/products/water-pump.jpg" },
-  { id: 3, name: "Safety Helmets Bulk", price: "$2 — $4", moq: "Min 500 Units", origin: "Yiwu", img: "/images/products/helmets.jpg" },
-  { id: 4, name: "CNC Router Machine", price: "$2,800 — $3,600", moq: "Min 1 Unit", origin: "Shenzhen", img: "/images/products/cnc-router.jpg" },
-  { id: 5, name: "LED Flood Lights 200W", price: "$18 — $25", moq: "Min 50 Units", origin: "Ningbo", img: "/images/products/led-flood.jpg" },
-  { id: 6, name: "Electrical Copper Cables", price: "$0.90 — $1.30", moq: "Min 1000m", origin: "Dongguan", img: "/images/products/copper-cables.jpg" },
-  { id: 7, name: "Diesel Generator 50KVA", price: "$3,500 — $4,200", moq: "Min 1 Unit", origin: "Foshan", img: "/images/products/generator.jpg" },
-  { id: 8, name: "Smart Electrical Meter", price: "$22 — $35", moq: "Min 100 Units", origin: "Shenzhen", img: "/images/products/smart-meter.jpg" },
+  { id: 1, name: "Solar Inverter 5KW Hybrid", price: "$480 — $620", moq: "Min 5 Units", origin: "Guangzhou", img: "/images/inverter.jpeg" },
+  { id: 2, name: "Industrial Water Pump 3HP", price: "$120 — $180", moq: "Min 10 Units", origin: "Zhejiang", img: "/images/pump.jpeg" },
+  { id: 3, name: "Safety Helmets Bulk", price: "$2 — $4", moq: "Min 500 Units", origin: "Yiwu", img: "/images/helmet.jpeg" },
+  { id: 4, name: "CNC Router Machine", price: "$2,800 — $3,600", moq: "Min 1 Unit", origin: "Shenzhen", img: "/images/router-machine.jpeg" },
+  { id: 5, name: "LED Flood Lights 200W", price: "$18 — $25", moq: "Min 50 Units", origin: "Ningbo", img: "/images/headlight.jpeg" },
+  { id: 6, name: "Electrical Copper Cables", price: "$0.90 — $1.30", moq: "Min 1000m", origin: "Dongguan", img: "/images/cable.jpeg" },
+  { id: 7, name: "Diesel Generator 50KVA", price: "$3,500 — $4,200", moq: "Min 1 Unit", origin: "Foshan", img: "/images/generator.jpeg" },
+  { id: 8, name: "Smart Electrical Meter", price: "$22 — $35", moq: "Min 100 Units", origin: "Shenzhen", img: "/images/smart-meter.jpeg" },
 ];
 
 /* ---------------- CATEGORIES ---------------- */
@@ -156,9 +156,12 @@ export default function Marketplace() {
 
                 {/* CHAT BUTTON */}
                 <div className="flex justify-center mt-2">
-                  <div className="p-2 border rounded-md text-slate-500 hover:text-[#065F46] flex justify-center items-center">
+                  <Link
+                    href="/chat"
+                    className="p-2 border rounded-md text-slate-500 hover:text-[#065F46] hover:border-[#065F46] transition flex justify-center items-center"
+                  >
                     <HiOutlineChatBubbleLeftRight className="w-4 h-4" />
-                  </div>
+                  </Link>
                 </div>
               </div>
             </div>

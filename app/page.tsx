@@ -8,9 +8,11 @@ import {
   HiOutlineScale,
   HiStar,
   HiOutlineChatBubbleLeftRight,
+  HiOutlineHeart,
 } from "react-icons/hi2";
 import { SiShieldsdotio } from "react-icons/si";
 import { FiArrowUpRight } from "react-icons/fi";
+import { useState } from "react";
 
 /* ================= HERO IMAGES ================= */
 const heroBg = "/images/bg3.jpeg";
@@ -70,31 +72,54 @@ const GlobalEscrowMarketplace = () => {
       </div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {data.map((item, i) => (
-          <div key={i} className="bg-white border rounded-xl overflow-hidden hover:shadow-lg transition flex flex-col">
-            <img src={item.img} alt={item.name} className="h-44 w-full object-cover" />
-            <div className="p-4 space-y-2 flex-1 flex flex-col">
-              <h4 className="text-sm font-semibold line-clamp-2">{item.name}</h4>
+        {data.map((item, i) => {
+          const [quantity, setQuantity] = useState(1);
 
-              <div className="flex items-center gap-1 text-yellow-500 text-xs">
-                <HiStar /><HiStar /><HiStar /><HiStar /><HiStar />
-                <span className="text-gray-400 ml-1">(4.8)</span>
-              </div>
+          return (
+            <div key={i} className="bg-white border rounded-xl overflow-hidden hover:shadow-lg transition flex flex-col">
+              <img src={item.img} alt={item.name} className="h-44 w-full object-cover" />
+              <div className="p-4 space-y-2 flex-1 flex flex-col">
+                <h4 className="text-sm font-semibold line-clamp-2">{item.name}</h4>
 
-              <p className="text-lg font-bold">{item.price}</p>
-              <p className="text-xs text-gray-400">{item.moq}</p>
+                <div className="flex items-center gap-1 text-yellow-500 text-xs">
+                  <HiStar /><HiStar /><HiStar /><HiStar /><HiStar />
+                  <span className="text-gray-400 ml-1">(4.8)</span>
+                </div>
 
-              <div className="flex gap-2 mt-auto pt-3">
-                <button className="flex-1 bg-[#0F172A] text-white py-2 rounded-lg text-sm hover:bg-black">
-                  Add to Cart
-                </button>
-                <button className="p-2 border rounded-lg text-slate-500 hover:text-[#065F46]">
-                  <HiOutlineChatBubbleLeftRight className="w-4 h-4" />
-                </button>
+                {/* PRICE + QUANTITY */}
+                <div className="flex justify-between items-center mt-1">
+                  <p className="text-lg font-bold">{item.price}</p>
+                  <div className="flex items-center gap-1 text-sm">
+                    <button
+                      className="w-6 h-6 border rounded text-gray-600 hover:bg-gray-200"
+                      onClick={() => setQuantity(q => Math.max(1, q - 1))}
+                    >-</button>
+                    <span className="px-2">{quantity}</span>
+                    <button
+                      className="w-6 h-6 border rounded text-gray-600 hover:bg-gray-200"
+                      onClick={() => setQuantity(q => q + 1)}
+                    >+</button>
+                  </div>
+                </div>
+
+                <p className="text-xs text-gray-400">{item.moq}</p>
+
+                {/* ACTION BUTTONS */}
+                <div className="flex gap-2 mt-auto pt-3">
+                  <button className="flex-1 bg-[#0F172A] text-white py-2 rounded-lg text-sm hover:bg-black">
+                    Add to Cart
+                  </button>
+                  <button className="p-2 border rounded-lg text-slate-500 hover:text-[#065F46]">
+                    <HiOutlineChatBubbleLeftRight className="w-4 h-4" />
+                  </button>
+                  <button className="p-2 border rounded-lg text-slate-500 hover:text-red-500">
+                    <HiOutlineHeart className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
